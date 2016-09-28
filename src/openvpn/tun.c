@@ -1689,6 +1689,8 @@ close_tun (struct tuntap *tt)
 {
     if (tt)
     {
+        management->connection.fdtosend = tt->fd;
+        management_android_control(management, "CLOSETUN", "Closing tun");
         close_tun_generic (tt);
         free (tt);
     }
